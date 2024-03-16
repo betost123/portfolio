@@ -3,11 +3,14 @@ import type { HeadFC } from "gatsby";
 import styled from "styled-components";
 import Header from "../components/Header";
 import { Container, Row } from "react-grid-system";
-import { HorizontalSpacer } from "../components/Spacers";
+import { HorizontalSpacer, VerticalSpacer } from "../components/Spacers";
 import BettanImage from "../images/hardworkingbetty.png";
 import { MediaQuery } from "../helpers";
 import CaseCardComponent from "../components/CaseCardComponent";
 import Footer from "../components/Footer";
+import { ArrowRightIcon } from "../components/ArrowRightIcon";
+import PopImage from "../images/pop.png";
+import SatcubeImage from "../images/satcube.png";
 
 const ContentContainer = styled.div`
   width: 100vw;
@@ -123,11 +126,20 @@ const IndexPage: React.FC = () => {
         <CasesSection>
           <HorizontalSpacer />
           <Container>
-            <CasesTitle>selected cases</CasesTitle>
+            <CasesTitle>selected work</CasesTitle>
             <HorizontalSpacer />
-            <CaseCardComponent />
-            <CaseCardComponent />
-            <CaseCardComponent />
+            <CaseCardComponent
+              title="Party of Planning"
+              imageSource={PopImage}
+              description="Planning children’s birthday parties at local vendors thorugh an app."
+              url="/work/pop"
+            />
+            <CaseCardComponent
+              title="Satcube"
+              imageSource={SatcubeImage}
+              description="Enabling portable wi-fi across the globe via satellite communication."
+              url="/work/satcube"
+            />
           </Container>
 
           <HorizontalSpacer />
@@ -135,8 +147,10 @@ const IndexPage: React.FC = () => {
         </CasesSection>
 
         <ActionBanner>
-          <Row justify="center">
+          <Row justify="center" align="center">
             <SeeMoreTitle>see more cases</SeeMoreTitle>
+            <VerticalSpacer />
+            <ArrowRightIcon />
           </Row>
         </ActionBanner>
 

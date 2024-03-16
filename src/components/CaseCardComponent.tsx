@@ -4,7 +4,12 @@ import PopImage from "../images/pop.png";
 import { MediaQuery } from "../helpers";
 import { HorizontalSpacer } from "./Spacers";
 
-interface Props {}
+interface Props {
+  title: string;
+  description: string;
+  imageSource: any;
+  url?: string;
+}
 
 const Container = styled.div`
   padding: 56px;
@@ -97,22 +102,25 @@ const Button = styled.button`
   }
 `;
 
-const CaseCardComponent: React.FC<Props> = ({}) => {
+const CaseCardComponent: React.FC<Props> = ({
+  title,
+  description,
+  imageSource,
+  url,
+}) => {
   return (
     <Container>
       <div style={{ position: "relative" }}>
-        <Image src={PopImage} />
+        <Image src={imageSource} />
         <LightBox />
       </div>
 
       <TextSection>
-        <Title>Party of Planning</Title>
+        <Title>{title}</Title>
         <HorizontalSpacer />
-        <Body>
-          Planning children’s birthday parties at local vendors thorugh an app.
-        </Body>
+        <Body>{description}</Body>
         <HorizontalSpacer />
-        <Button>Read more</Button>
+        {url && <Button>Read more</Button>}
       </TextSection>
     </Container>
   );

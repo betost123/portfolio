@@ -2,6 +2,7 @@ import * as React from "react";
 import { Container } from "react-grid-system";
 import styled from "styled-components";
 import { VerticalSpacer } from "./Spacers";
+import { Link } from "gatsby";
 
 const ContentContainer = styled.div`
   width: 100%;
@@ -23,7 +24,7 @@ const MenuSection = styled.div`
   flex-direction: row;
 `;
 
-const MenuItem = styled.button<{ selected: boolean }>`
+const MenuItem = styled.div<{ selected: boolean }>`
   color: #1305b1;
   font-size: 16px;
   font-weight: ${(props) => (props.selected ? 700 : 500)};
@@ -32,26 +33,38 @@ const MenuItem = styled.button<{ selected: boolean }>`
   outline: none;
   font-family: "Gowun Batang", serif;
 
+  text-decoration: ${(props) => (props.selected ? "underline" : "none")};
+
   :hover {
+    color: blue;
+    font-weight: 700;
     border-bottom: 1px solid #1305b1;
   }
 `;
 
 const Header: React.FC = () => {
-  const aboutSelected = true;
-  const casesSelected = false;
-  const contactSelected = false;
+  const aboutSelected = window.location.pathname.includes("about");
+  const casesSelected = window.location.pathname.includes("work");
+  const contactSelected = window.location.pathname.includes("contact");
 
   return (
     <Container>
       <ContentContainer>
-        <Title>ba.</Title>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Title>ba.</Title>
+        </Link>
         <MenuSection>
-          <MenuItem selected={aboutSelected}>about</MenuItem>
+          <Link to="/about" style={{ textDecoration: "none" }}>
+            <MenuItem selected={aboutSelected}>about</MenuItem>
+          </Link>
           <VerticalSpacer />
-          <MenuItem selected={casesSelected}>cases</MenuItem>
+          <Link to="/work" style={{ textDecoration: "none" }}>
+            <MenuItem selected={casesSelected}>work</MenuItem>
+          </Link>
           <VerticalSpacer />
-          <MenuItem selected={contactSelected}>contact</MenuItem>
+          <Link to="/contact" style={{ textDecoration: "none" }}>
+            <MenuItem selected={contactSelected}>contact</MenuItem>
+          </Link>
         </MenuSection>
       </ContentContainer>
     </Container>
